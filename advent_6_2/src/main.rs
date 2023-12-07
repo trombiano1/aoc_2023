@@ -1,5 +1,3 @@
-/* This code is REALLY terrible - takes a couple of hours to run */
-
 use std::io::{self, BufRead};
 
 fn main() {
