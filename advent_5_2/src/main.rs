@@ -51,7 +51,7 @@ fn main() {
     let mut mn = std::i64::MAX;
     for window in seeds.chunks(2) {
         for delta in 0..window[1] {
-            if delta % 1000000 == 0 {
+            if delta % 10000000 == 0 {
                 println!("{}", delta as f32 / window[1] as f32 * 100 as f32)
             }
             let mut loc = window[0] + delta;
