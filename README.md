@@ -61,4 +61,8 @@ Almost the same as part 1.
 Naive method is just fine, simple enough.
 
 #### Part 2
-Why would you not tell me every time it loops?! Everything becomes so much easier if that can be assumed...($O(N^2)$)
+Why would you not tell me every time it loops?! Everything becomes so much easier if that can be assumed... $O(N^2)$
+
+## Day 9
+#### Part 1 & 2
+I think I'm getting used to Rust :) I was able to write most of the code without looking anything up. $O(N)$
