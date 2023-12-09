@@ -8,15 +8,7 @@ fn main() {
     
     let mut lines = Vec::new();
     for line in reader.lines() {
-        match line {
-            Ok(line) => {
-                lines.push(line);
-            }
-            Err(e) => {
-                eprintln!("Error: {}", e);
-                break;
-            }
-        }
+        lines.push(line.unwrap());
     }
     
     let mut count: Vec<i64> = vec![1; lines.len().try_into().unwrap()];

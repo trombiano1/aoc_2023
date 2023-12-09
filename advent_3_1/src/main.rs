@@ -27,17 +27,10 @@ fn main() {
     let stdin = io::stdin();
     let reader = stdin.lock();
     for line in reader.lines() {
-        match line {
-            Ok(line) => {
-                let mut char_vec: Vec<char> = line.chars().collect();
-                char_vec.push('.');
-                map.push(char_vec);
-            }
-            Err(e) => {
-                eprintln!("Error: {}", e);
-                break;
-            }
-        }
+        let dat = line.unwrap();
+        let mut char_vec: Vec<char> = dat.chars().collect();
+        char_vec.push('.');
+        map.push(char_vec);
     }
     
     let mut ans: i64 = 0;

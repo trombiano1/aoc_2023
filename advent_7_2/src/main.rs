@@ -13,54 +13,47 @@ fn main() {
 
     let mut cards: Vec<Vec<(String, i32)>> = vec![vec![]; 7];
     for line in reader.lines() {
-        match line {
-            Ok(line) => {
-                let mut parts = line.split(" ");
-                let card = parts.next().unwrap().to_string();
-                let bid: i32 = parts.next().unwrap().parse().unwrap();
-                
-                let mut alph = vec![0; 13];
-                let mut jokers = 0;
-
-                for c in card.chars() {
-                    if c == 'J' {
-                        jokers += 1;
-                        continue;
-                    }
-                    alph[mp[&c]] += 1;
-                }
-                
-                let mut max = 0;
-                let mut second_max = 0;
-                for a in alph {
-                    if a > max {
-                        second_max = max;
-                        max = a;
-                    } else if a > second_max {
-                        second_max = a;
-                    }
-                }
-
-                max += jokers;
-                
-                let idx = |max, second_max| match (max, second_max) {
-                    (5, _) => 6 as usize,
-                    (4, _) => 5 as usize,
-                    (3, 2) => 4 as usize,
-                    (3, 1) => 3 as usize,
-                    (2, 2) => 2 as usize,
-                    (2, 1) => 1 as usize,
-                    (1, _) => 0 as usize,
-                    _ => panic!("err"),
-                };
-
-                cards[idx(max, second_max)].push((card, bid));
+        let dat = line.unwrap();
+        let mut parts = dat.split(" ");
+        let card = parts.next().unwrap().to_string();
+        let bid: i32 = parts.next().unwrap().parse().unwrap();
+        
+        let mut alph = vec![0; 13];
+        let mut jokers = 0;
+        
+        for c in card.chars() {
+            if c == 'J' {
+                jokers += 1;
+                continue;
             }
-            Err(e) => {
-                eprintln!("Error: {}", e);
-                break;
+            alph[mp[&c]] += 1;
+        }
+        
+        let mut max = 0;
+        let mut second_max = 0;
+        for a in alph {
+            if a > max {
+                second_max = max;
+                max = a;
+            } else if a > second_max {
+                second_max = a;
             }
         }
+        
+        max += jokers;
+        
+        let idx = |max, second_max| match (max, second_max) {
+            (5, _) => 6 as usize,
+            (4, _) => 5 as usize,
+            (3, 2) => 4 as usize,
+            (3, 1) => 3 as usize,
+            (2, 2) => 2 as usize,
+            (2, 1) => 1 as usize,
+            (1, _) => 0 as usize,
+            _ => panic!("err"),
+        };
+        
+        cards[idx(max, second_max)].push((card, bid));
     }
     
     let mut c = 0;

@@ -13,34 +13,27 @@ fn main() {
     limits.insert(String::from("blue"), 14);
     
     for line in reader.lines() {
-        match line {
-            Ok(line) => {
-                let mut attempts = line.split(": ");
-                let num: i32 = attempts.next().unwrap()[5..].parse().unwrap();
-                let mut ok = true;
-                for game in attempts.next().unwrap_or_default().split("; ") {
-                    if !ok {
-                        break;
-                    }
-                    for dat in game.split(", ") {
-                        let mut parts = dat.split(" "); 
-                        let count: i32 = parts.next().unwrap().parse().unwrap();
-                        let color = parts.next().unwrap();
-                        
-                        if count > limits[color] {
-                            ok = false;
-                            break;
-                        }
-                    }
-                }
-                if ok {
-                    ans += num;
-                }
-            }
-            Err(e) => {
-                eprintln!("Error: {}", e);
+        let dat = line.unwrap();
+        let mut attempts = dat.split(": ");
+        let num: i32 = attempts.next().unwrap()[5..].parse().unwrap();
+        let mut ok = true;
+        for game in attempts.next().unwrap_or_default().split("; ") {
+            if !ok {
                 break;
             }
+            for dat in game.split(", ") {
+                let mut parts = dat.split(" "); 
+                let count: i32 = parts.next().unwrap().parse().unwrap();
+                let color = parts.next().unwrap();
+                
+                if count > limits[color] {
+                    ok = false;
+                    break;
+                }
+            }
+        }
+        if ok {
+            ans += num;
         }
     }
     println!("{}", ans);

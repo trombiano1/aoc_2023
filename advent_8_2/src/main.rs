@@ -9,28 +9,21 @@ fn main() {
     let mut g: HashMap<String, (String, String)> = HashMap::new();
     let mut inst: String = "".to_string();
     for (i, line) in reader.lines().enumerate() {
-        match line {
-            Ok(line) => {
-                if i == 0 {
-                    inst = line;
-                    continue;
-                }
-                
-                if i == 1 {
-                    continue;
-                }
-
-                let frm = &line[0..3];
-                let left = &line[7..10];
-                let right = &line[12..15];
-
-                g.insert(frm.to_string(), (left.to_string(), right.to_string()));
-            }
-            Err(e) => {
-                eprintln!("Error: {}", e);
-                break;
-            }
+        if i == 0 {
+            inst = line.unwrap();
+            continue;
         }
+        
+        if i == 1 {
+            continue;
+        }
+        
+        let dat = line.unwrap();
+        let frm = &dat[0..3];
+        let left = &dat[7..10];
+        let right = &dat[12..15];
+        
+        g.insert(frm.to_string(), (left.to_string(), right.to_string()));
     }
     
     let mut ghosts: Vec<String> = Vec::new();

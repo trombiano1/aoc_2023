@@ -7,33 +7,26 @@ fn main() {
     let mut dist: Vec<i32> = Vec::new();
 
     for (i, line) in reader.lines().enumerate() {
-        match line {
-            Ok(line) => {
-                if i == 0 {
-                    let parts = line.split(": ");
-                    let info_str = parts.skip(1).next().unwrap();
-                    for time_str in info_str.split(" ") {
-                        if time_str == "" {
-                            continue;
-                        }
-                        time.push(time_str.parse().unwrap());
-                    }
+        let dat = line.unwrap();
+        if i == 0 {
+            let parts = dat.split(": ");
+            let info_str = parts.skip(1).next().unwrap();
+            for time_str in info_str.split(" ") {
+                if time_str == "" {
+                    continue;
                 }
-
-                if i == 1 {
-                    let parts = line.split(": ");
-                    let info_str = parts.skip(1).next().unwrap();
-                    for dist_str in info_str.split(" ") {
-                        if dist_str == "" {
-                            continue;
-                        }
-                        dist.push(dist_str.parse().unwrap());
-                    }
-                }
+                time.push(time_str.parse().unwrap());
             }
-            Err(e) => {
-                eprintln!("Error: {}", e);
-                break;
+        }
+        
+        if i == 1 {
+            let parts = dat.split(": ");
+            let info_str = parts.skip(1).next().unwrap();
+            for dist_str in info_str.split(" ") {
+                if dist_str == "" {
+                    continue;
+                }
+                dist.push(dist_str.parse().unwrap());
             }
         }
     }

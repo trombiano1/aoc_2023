@@ -7,24 +7,16 @@ fn main() {
     let mut dist: i64 = 0;
 
     for (i, line) in reader.lines().enumerate() {
-        match line {
-            Ok(line) => {
-                if i == 0 {
-                    let replaced_line = line.replace(' ', "");
-                    let parts = replaced_line.split(":");
-                    time = parts.skip(1).next().unwrap().parse().unwrap();
-                }
-
-                if i == 1 {
-                    let replaced_line = line.replace(' ', "");
-                    let parts = replaced_line.split(":");
-                    dist = parts.skip(1).next().unwrap().parse().unwrap();
-                }
-            }
-            Err(e) => {
-                eprintln!("Error: {}", e);
-                break;
-            }
+        let dat = line.unwrap();
+        if i == 0 {
+            let replaced_line = dat.replace(' ', "");
+            let parts = replaced_line.split(":");
+            time = parts.skip(1).next().unwrap().parse().unwrap();
+        }
+        if i == 1 {
+            let replaced_line = dat.replace(' ', "");
+            let parts = replaced_line.split(":");
+            dist = parts.skip(1).next().unwrap().parse().unwrap();
         }
     }
 
