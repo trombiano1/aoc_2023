@@ -66,3 +66,10 @@ Why would you not tell me every time it loops?! Everything becomes so much easie
 ## Day 9
 #### Part 1 & 2
 I think I'm getting used to Rust :) I was able to write most of the code without looking anything up. $O(N^2)$
+
+## Day 10
+#### Part 1
+BFS works fine. Learned to use `VecDeque`.
+
+#### Part 2
+Rough. I ended up doubling the grid and then using `UnionFind`. I know the implementation can be made better but I didn't have time today.
