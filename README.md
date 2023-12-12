@@ -73,3 +73,14 @@ BFS works fine. Learned to use `VecDeque`.
 
 #### Part 2
 Rough. I ended up doubling the grid and then using `UnionFind`. I know the implementation can be made better but I didn't have time today.
+
+## Day 11
+#### Part 1 & Part 2
+Again, storing the map as `Vec<Vec<char>>` instead of `Vec<String>` makes things a lot easier. I wish there was an `abs` function that takes two `usize`s because it's a lot of work to do what in C++ is just `abs(a - b)`.
+
+## Day 12
+#### Part 1
+Since we don't have time constraints (and I didn't know what the part 2 was going to look like), I decided to look for all of the possibilities and count the ones that matched the conditions (practicing writing bitwise exhaustive search in Rust). Took longer than I expected but it works :P
+
+#### Part 2
+The problem stays the same but with harder constraints. We can't possibly exhaust $O(2^{100})$ so we will have to DP. Normal 3D DP worked just fine.
