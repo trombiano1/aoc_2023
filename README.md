@@ -84,3 +84,7 @@ Since we don't have time constraints (and I didn't know what the part 2 was goin
 
 #### Part 2
 The problem stays the same but with harder constraints. We can't possibly exhaust $O(2^{100})$ so we will have to DP. Normal 3D DP worked just fine.
+
+## Day 13
+#### Part 1 & 2
+Not much that's new. Though there is still room for optimization, the input is small enough to check everything multiple times. 
