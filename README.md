@@ -88,3 +88,10 @@ The problem stays the same but with harder constraints. We can't possibly exhaus
 ## Day 13
 #### Part 1 & 2
 Not much that's new. Though there is still room for optimization, the input is small enough to check everything multiple times. 
+
+## Day 14
+#### Part 1
+Simulation.
+
+#### Part 2
+The difficult part is starting to become not Rust but the problem. Within a billion cycles it's probably going to repeat itself (I don't have proof), so I coded based on that assumption.
