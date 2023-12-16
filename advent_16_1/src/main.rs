@@ -8,47 +8,36 @@ fn dfs(i: isize, j: isize, k: usize, seen: &mut Vec<Vec<Vec<bool>>>, map: &Vec<V
         return;
     }
     seen[i as usize][j as usize][k] = true;
-    match map[i as usize][j as usize] {
-        '.' => match k {
-            0 => dfs(i, j + 1, k, seen, map),
-            1 => dfs(i + 1, j, k, seen, map),
-            2 => dfs(i, j - 1, k, seen, map),
-            3 => dfs(i - 1, j, k, seen, map),
-            _ => {}
-        },
-        '/' => match k {
+    match (map[i as usize][j as usize], k) {
+        ('|', 0 | 2) => {
+            dfs(i - 1, j, 3, seen, map);
+            dfs(i + 1, j, 1, seen, map);
+        }
+        ('-', 1 | 3) => {
+            dfs(i, j + 1, 0, seen, map);
+            dfs(i, j - 1, 2, seen, map);
+        }
+        ('/', _) => match k {
             0 => dfs(i - 1, j, 3, seen, map),
             1 => dfs(i, j - 1, 2, seen, map),
             2 => dfs(i + 1, j, 1, seen, map),
             3 => dfs(i, j + 1, 0, seen, map),
             _ => {}
         },
-        '\\' => match k {
+        ('\\', _) => match k {
             0 => dfs(i + 1, j, 1, seen, map),
             1 => dfs(i, j + 1, 0, seen, map),
             2 => dfs(i - 1, j, 3, seen, map),
             3 => dfs(i, j - 1, 2, seen, map),
             _ => {}
         },
-        '|' => match k {
-            0 | 2 => {
-                dfs(i - 1, j, 3, seen, map);
-                dfs(i + 1, j, 1, seen, map);
-            }
+        (_, _) => match k {
+            0 => dfs(i, j + 1, k, seen, map),
             1 => dfs(i + 1, j, k, seen, map),
+            2 => dfs(i, j - 1, k, seen, map),
             3 => dfs(i - 1, j, k, seen, map),
             _ => {}
         },
-        '-' => match k {
-            1 | 3 => {
-                dfs(i, j + 1, 0, seen, map);
-                dfs(i, j - 1, 2, seen, map);
-            }
-            0 => dfs(i, j + 1, k, seen, map),
-            2 => dfs(i, j - 1, k, seen, map),
-            _ => {}
-        },
-        _ => {}
     }
 }
 
