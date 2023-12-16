@@ -1,43 +1,48 @@
 use std::io::{self, BufRead};
 
-fn dfs(i: isize, j: isize, k: usize, seen: &mut Vec<Vec<Vec<bool>>>, map: &Vec<Vec<char>>) {
+#[derive(Clone, Copy)]
+enum Direction {
+    Right,
+    Down,
+    Left,
+    Up,
+}
+
+use Direction::*;
+
+fn dfs(i: isize, j: isize, k: Direction, seen: &mut Vec<Vec<Vec<bool>>>, map: &Vec<Vec<char>>) {
     if i < 0 || i >= map.len() as isize || j < 0 || j >= map[0].len() as isize {
         return;
     }
-    if seen[i as usize][j as usize][k] {
+    if seen[i as usize][j as usize][k as usize] {
         return;
     }
-    seen[i as usize][j as usize][k] = true;
+    seen[i as usize][j as usize][k as usize] = true;
     match (map[i as usize][j as usize], k) {
-        ('|', 0 | 2) => {
-            dfs(i - 1, j, 3, seen, map);
-            dfs(i + 1, j, 1, seen, map);
+        ('|', Right | Left) => {
+            dfs(i - 1, j, Up, seen, map);
+            dfs(i + 1, j, Down, seen, map);
         }
-        ('-', 1 | 3) => {
-            dfs(i, j + 1, 0, seen, map);
-            dfs(i, j - 1, 2, seen, map);
+        ('-', Down | Up) => {
+            dfs(i, j + 1, Right, seen, map);
+            dfs(i, j - 1, Left, seen, map);
         }
         ('/', _) => match k {
-            0 => dfs(i - 1, j, 3, seen, map),
-            1 => dfs(i, j - 1, 2, seen, map),
-            2 => dfs(i + 1, j, 1, seen, map),
-            3 => dfs(i, j + 1, 0, seen, map),
-            _ => {}
+            Right => dfs(i - 1, j, Up, seen, map),
+            Down => dfs(i, j - 1, Left, seen, map),
+            Left => dfs(i + 1, j, Down, seen, map),
+            Up => dfs(i, j + 1, Right, seen, map),
         },
         ('\\', _) => match k {
-            0 => dfs(i + 1, j, 1, seen, map),
-            1 => dfs(i, j + 1, 0, seen, map),
-            2 => dfs(i - 1, j, 3, seen, map),
-            3 => dfs(i, j - 1, 2, seen, map),
-            _ => {}
+            Right => dfs(i + 1, j, Down, seen, map),
+            Down => dfs(i, j + 1, Right, seen, map),
+            Left => dfs(i - 1, j, Up, seen, map),
+            Up => dfs(i, j - 1, Left, seen, map),
         },
-        (_, _) => match k {
-            0 => dfs(i, j + 1, k, seen, map),
-            1 => dfs(i + 1, j, k, seen, map),
-            2 => dfs(i, j - 1, k, seen, map),
-            3 => dfs(i - 1, j, k, seen, map),
-            _ => {}
-        },
+        (_, Right) => dfs(i, j + 1, Right, seen, map),
+        (_, Down) => dfs(i + 1, j, Down, seen, map),
+        (_, Left) => dfs(i, j - 1, Left, seen, map),
+        (_, Up) => dfs(i - 1, j, Up, seen, map),
     }
 }
 
@@ -52,7 +57,7 @@ fn main() {
     }
 
     let mut seen = vec![vec![vec![false; 4]; map[0].len()]; map.len()];
-    dfs(0, 0, 0, &mut seen, &map);
+    dfs(0, 0, Right, &mut seen, &map);
 
     let mut ans = 0;
     for l in &seen {
