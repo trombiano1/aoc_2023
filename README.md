@@ -95,3 +95,7 @@ Simulation.
 
 #### Part 2
 The difficult part is starting to become not Rust but the problem. Within a billion cycles it's probably going to repeat itself (I don't have proof), so I coded based on that assumption.
+
+## Day 15
+#### Part 1 & 2
+`HashMap` and `sort_by`. 
