@@ -10,23 +10,28 @@ fn main() {
         for num_str in line.unwrap().split(" ") {
             nums.push(num_str.parse().unwrap());
         }
-        
+
         let mut memo: Vec<Vec<i64>> = Vec::new();
         memo.push(nums);
-        
+
         loop {
             let mut new_diffs: Vec<i64> = Vec::new();
             let diffs = memo.last().unwrap();
             for i in 0..diffs.len() - 1 {
                 new_diffs.push(diffs[i + 1] - diffs[i]);
             }
-            
+
             memo.push(new_diffs);
-            if memo.last().unwrap().iter().all(|&i| i == memo.last().unwrap()[0]) {
+            if memo
+                .last()
+                .unwrap()
+                .iter()
+                .all(|&i| i == memo.last().unwrap()[0])
+            {
                 break;
             }
         }
-        
+
         memo.reverse();
         let mut now: i64 = 0;
         for diffs in &memo {

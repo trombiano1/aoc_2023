@@ -104,3 +104,7 @@ The difficult part is starting to become not Rust but the problem. Within a bill
 Directional DFS. When I write DFS in C++ I usually use lambda so that 1. I don't have to make anything global and 2. I don't need to have too many arguments. In Rust there isn't global variables so I had to use arguments to pass `const`s. Maybe closures coud have been used but I don't know if closures can handle recursions.
 
 I also experimented with using `enums` - they make things a lot simpler!
+
+## Day 17
+#### Part 1 & 2
+Directional Dijkstra. It was my first time writing dijkstra in Rust. `BinaryHeap` can be reversed if I use `Reverse()` (Remember to use `Reverse`) to take the argument out.
