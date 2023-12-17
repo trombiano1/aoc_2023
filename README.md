@@ -107,4 +107,4 @@ I also experimented with using `enums` - they make things a lot simpler!
 
 ## Day 17
 #### Part 1 & 2
-Directional Dijkstra. It was my first time writing dijkstra in Rust. `BinaryHeap` can be reversed if I use `Reverse()` (Remember to use `Reverse`) to take the argument out.
+Directional Dijkstra. It was my first time writing Dijkstra in Rust. `BinaryHeap` can be reversed if I use `Reverse()` (remember to use `Reverse` to take the argument out).
