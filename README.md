@@ -108,3 +108,10 @@ I also experimented with using `enums` - they make things a lot simpler!
 ## Day 17
 #### Part 1 & 2
 Directional Dijkstra. It was my first time writing Dijkstra in Rust. `BinaryHeap` can be reversed if I use `Reverse()` (remember to use `Reverse` to take the argument out).
+
+## Day 18
+#### Part 1
+Simulation. Again, to find out which cell is inside and which cell is outside, I had to double the grid and then use `UnionFind`. I reused some code from Day 10.
+
+#### Part 2
+2D coordinate compression. I couldn't find a library for it so I wrote it myself; nice challenge!
